@@ -58,4 +58,11 @@ export class TokenController {
       resolve(JSON.stringify(this.tokenService.getAllPriceStampsInYear(id)))
     )
   }
+
+  @Get(':id/stamps')
+  async getAllPriceStampsInAllTime(@Param('id', ParseIntPipe) id: number): Promise<string> {
+    return new Promise<string>((resolve) =>
+      resolve(JSON.stringify(this.tokenService.getAllPriceStamps(id)))
+    )
+  }
 }

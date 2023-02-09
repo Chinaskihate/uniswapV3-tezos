@@ -1,1 +1,0 @@
-run: ts-node src/app/app.ts

@@ -14,5 +14,4 @@ export class TokenWithBaseStatistics extends BaseToken {
   set statistics(statistics: BaseStatistics) {
     this._statistics = statistics;
   }
-
 }

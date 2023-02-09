@@ -40,6 +40,13 @@ export class TokenService implements ITokenService {
     return this.filterStamps(this._provider.extendedTokensList, id, UnitOfTime.YEAR)
   }
 
+  getAllPriceStamps(id: number): PriceStamp[] {
+    return this._provider
+      .extendedTokensList
+      .find(token => token.id == id)
+      .priceStampsAllTime
+  }
+
   // get all token timeStamps from the unitOfTime
   private filterStamps(tokens: ExtendedToken[],
                        id: number,

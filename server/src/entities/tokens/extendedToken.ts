@@ -11,5 +11,4 @@ export class ExtendedToken extends TokenWithExtendedStatistics {
   get priceStampsAllTime(): PriceStamp[] {
     return this._priceStampsAllTime
   }
-
 }

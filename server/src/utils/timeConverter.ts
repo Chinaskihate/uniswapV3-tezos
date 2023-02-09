@@ -1,6 +1,13 @@
 import { UnitOfTime } from "./unitOfTime";
 
 export class TimeConverter {
+  private static readonly MILLISECONDS_IN_SECOND: number = 1000
+  private static readonly SECONDS_IN_MINUTE: number = 60
+  private static readonly MINUTES_IN_HOUR: number = 60
+  private static readonly HOURS_IN_DAY: number = 24
+  private static readonly DAYS_IN_WEEK: number = 7
+  private static readonly DAYS_IN_YEAR: number = 365
+
   /**
    * converting unix millisecond timestamp to target unit of time
    * @param milliseconds input timestamp
@@ -16,18 +23,22 @@ export class TimeConverter {
   }
 
   private static millisecondsToHours(milliseconds: number): number {
-    return milliseconds / (1000 * 60 * 60)
+    return milliseconds / (this.MILLISECONDS_IN_SECOND * this.SECONDS_IN_MINUTE
+      * this.MINUTES_IN_HOUR)
   }
 
   private static millisecondsToDays(milliseconds: number): number {
-    return milliseconds / (1000 * 60 * 60 * 24)
+    return milliseconds / (this.MILLISECONDS_IN_SECOND * this.SECONDS_IN_MINUTE
+      * this.MINUTES_IN_HOUR * this.HOURS_IN_DAY)
   }
 
   private static millisecondsToWeeks(milliseconds: number): number {
-    return milliseconds / (1000 * 60 * 60 * 24 * 7)
+    return milliseconds / (this.MILLISECONDS_IN_SECOND * this.SECONDS_IN_MINUTE
+      * this.MINUTES_IN_HOUR * this.HOURS_IN_DAY * this.DAYS_IN_WEEK)
   }
 
   private static millisecondsToYears(milliseconds: number): number {
-    return milliseconds / (1000 * 60 * 60 * 24 * 365)
+    return milliseconds / (this.MILLISECONDS_IN_SECOND * this.SECONDS_IN_MINUTE
+      * this.MINUTES_IN_HOUR * this.HOURS_IN_DAY * this.DAYS_IN_YEAR)
   }
 }

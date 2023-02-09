@@ -6,6 +6,7 @@ export interface ITokenService {
   getTokenById(id: number) : ExtendedToken
   getAllTokens(): TokenWithBaseStatistics[]
   getAllTokensByNamePattern(name: string): TokenWithBaseStatistics[];
+  getAllPriceStamps(id: number): PriceStamp[]
   getAllPriceStampsInHour(id: number): PriceStamp[]
   getAllPriceStampsInDay(id: number): PriceStamp[]
   getAllPriceStampsInWeek(id: number): PriceStamp[]

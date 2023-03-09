@@ -1,10 +1,10 @@
-import { IjsonTokenFormatter } from "./IjsonTokenFormatter";
+import { I_JSON_TokenFormatter } from "./I_JSON_TokenFormatter";
 
-export class JsonTokenFormatter implements IjsonTokenFormatter {
+export class JSON_TokenFormatter implements I_JSON_TokenFormatter {
   private static readonly fields: string[] = [
     'id', 'fullName', 'shortName', 'address', 'statistics',
     'price', 'change', 'totalValueLocked', 'totalVolume', 'volumeForDay',
-    'priceStampsAllTime', '', 'timeStamp', "icon",
+    'priceStampsAllTime', 'timeStamp', "icon",
   ]
 
   /**
@@ -12,7 +12,7 @@ export class JsonTokenFormatter implements IjsonTokenFormatter {
    * @param jsonString input json string
    */
   format(jsonString: string): string {
-    JsonTokenFormatter.fields.map(
+    JSON_TokenFormatter.fields.map(
       fieldName => jsonString = jsonString
         .split('"_' + fieldName + '":')
         .join('"' + fieldName + '":')

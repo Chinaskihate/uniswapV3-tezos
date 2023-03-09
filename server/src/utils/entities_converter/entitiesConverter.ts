@@ -12,14 +12,15 @@ import { PriceStampDB } from "../../db/entities/priceStampDB";
 export class EntitiesConverter implements IEntitiesConverter {
   convertToBaseToken(tezosTokenDB: TezosTokenDB): BaseToken {
     return new BaseToken(
-      tezosTokenDB.id, tezosTokenDB.fullName,
-      tezosTokenDB.shortName, tezosTokenDB.address
+      tezosTokenDB.address,
+      tezosTokenDB.fullName,
+      tezosTokenDB.shortName
     )
   }
 
   convertToExtendedToken(tezosTokenDB: TezosTokenDB, priceStamps: PriceStampDB[]): ExtendedToken {
     const extendedToken: ExtendedToken = new ExtendedToken(
-      tezosTokenDB.id, tezosTokenDB.fullName, tezosTokenDB.shortName,
+      tezosTokenDB.fullName, tezosTokenDB.shortName,
       tezosTokenDB.address, new ExtendedStatistics(
         tezosTokenDB.price, tezosTokenDB.change, tezosTokenDB.totalValueLocked,
         tezosTokenDB.totalVolume, tezosTokenDB.volumeForDay, tezosTokenDB.icon
@@ -33,7 +34,7 @@ export class EntitiesConverter implements IEntitiesConverter {
 
   convertToTokenWithBaseStatistics(tezosTokenDB: TezosTokenDB): TokenWithBaseStatistics {
     return new TokenWithBaseStatistics(
-      tezosTokenDB.id, tezosTokenDB.fullName, tezosTokenDB.shortName,
+      tezosTokenDB.fullName, tezosTokenDB.shortName,
       tezosTokenDB.address, new BaseStatistics(
         tezosTokenDB.price, tezosTokenDB.change
       )
@@ -42,7 +43,7 @@ export class EntitiesConverter implements IEntitiesConverter {
 
   convertToTokenWithExtendedStatistics(tezosTokenDB: TezosTokenDB): TokenWithExtendedStatistics {
     return new TokenWithExtendedStatistics(
-      tezosTokenDB.id, tezosTokenDB.fullName, tezosTokenDB.shortName,
+      tezosTokenDB.fullName, tezosTokenDB.shortName,
       tezosTokenDB.address, new ExtendedStatistics(
         tezosTokenDB.price, tezosTokenDB.change, tezosTokenDB.totalValueLocked,
         tezosTokenDB.totalVolume, tezosTokenDB.volumeForDay, tezosTokenDB.icon
@@ -52,5 +53,21 @@ export class EntitiesConverter implements IEntitiesConverter {
 
   convertToPriceStamp(priceStampDB: PriceStampDB): PriceStamp {
     return new PriceStamp(priceStampDB.price, priceStampDB.time_stamp)
+  }
+
+  convertToTezosDBToken(token: ExtendedToken): TezosTokenDB {
+    return new TezosTokenDB(
+        token.fullName, token.shortName, token.address,
+        token.statistics.price, token.statistics.change,
+        token.statistics.totalValueLocked, token.statistics.totalVolume,
+        token.statistics.volumeForDay, token.statistics.icon
+    )
+  }
+
+  convertToPriceStampDB(priceStamp: PriceStamp,
+                        tezosToken: TezosTokenDB): PriceStampDB {
+    return new PriceStampDB(priceStamp.price,
+        priceStamp.timeStamp, tezosToken
+    )
   }
 }

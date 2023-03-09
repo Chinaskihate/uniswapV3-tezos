@@ -1,20 +1,16 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { PriceStampDB } from "./priceStampDB";
-import { JoinTable } from "typeorm";
+import {Column, Entity, JoinTable, OneToMany, PrimaryColumn} from "typeorm";
+import {PriceStampDB} from "./priceStampDB";
 
 @Entity({name: 'tezos_token'})
 export class TezosTokenDB {
-  @PrimaryGeneratedColumn()
-  id: number
+  @PrimaryColumn({type : 'varchar', name: 'id'})
+  address: string
 
   @Column({name: 'full_name'})
   fullName: string
 
   @Column({name: 'short_name'})
   shortName: string
-
-  @Column({name: 'address'})
-  address: string
 
   @Column({name: 'price'})
   price: number
@@ -39,4 +35,19 @@ export class TezosTokenDB {
   })
   @JoinTable({name: 'price_stamp'})
   priceStamps: Promise<PriceStampDB[]>;
+
+  constructor(fullName?: string, shortName?: string,
+              address?: string, price?: number, change?:number,
+              totalValueLocked?: number, totalVolume?: number,
+              volumeForDay?: number, icon?:string) {
+    this.fullName = fullName
+    this.shortName = shortName
+    this.address = address
+    this.price = price
+    this.change = change
+    this.totalValueLocked = totalValueLocked
+    this.totalVolume = totalVolume
+    this.volumeForDay = volumeForDay
+    this.icon = icon
+  }
 }

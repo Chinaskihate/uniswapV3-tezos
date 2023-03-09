@@ -1,12 +1,13 @@
+drop table if exists tezos_token;
+
 -- auto-generated definition
 create table tezos_token
 (
-    id                 serial
+    id                 varchar not null
         constraint "PK_a738bf0c992558f6cfee4273492"
             primary key,
     full_name          varchar not null,
     short_name         varchar not null,
-    address            varchar not null,
     price              integer not null,
     change             integer not null,
     total_value_locked integer not null,

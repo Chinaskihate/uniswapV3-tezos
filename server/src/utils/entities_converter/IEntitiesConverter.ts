@@ -12,4 +12,6 @@ export interface IEntitiesConverter {
   convertToTokenWithExtendedStatistics(tezosTokenDB: TezosTokenDB): TokenWithExtendedStatistics
   convertToExtendedToken(tezosTokenDB: TezosTokenDB, priceStamps: PriceStampDB[]): ExtendedToken
   convertToPriceStamp(priceStampDB: PriceStampDB): PriceStamp
+  convertToTezosDBToken(extendedToken: ExtendedToken): TezosTokenDB
+  convertToPriceStampDB(priceStamp: PriceStamp, tezosToken: TezosTokenDB): PriceStampDB
 }

@@ -1,7 +1,7 @@
 export class DomainObject {
-  constructor(private readonly _id: number) { }
+  constructor(private _address: string) { }
 
-  get id(): number {
-    return this._id
+  get address(): string {
+    return this._address
   }
 }

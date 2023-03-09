@@ -1,15 +1,10 @@
 import { DomainObject } from "./domainObject";
 
 export class BaseToken extends DomainObject {
-  constructor(id: number,
+  constructor(address: string,
               private readonly _fullName: string,
-              private readonly _shortName: string,
-              private _address: string) {
-    super(id);
-  }
-
-  get address(): string {
-    return this._address
+              private readonly _shortName: string) {
+    super(address);
   }
 
   get fullName(): string {

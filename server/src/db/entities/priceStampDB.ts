@@ -13,6 +13,14 @@ export class PriceStampDB {
   @Column({name: 'price'})
   price: number
 
-  @ManyToOne(() => TezosTokenDB, token => token.priceStamps)
+  @ManyToOne(() => TezosTokenDB, token => token.priceStamps, {
+    onDelete: 'CASCADE', onUpdate: 'CASCADE'
+  })
   token: TezosTokenDB
+
+  constructor(price?:number, time_stamp?:Date,  token?:TezosTokenDB) {
+    this.time_stamp = time_stamp
+    this.price = price
+    this.token = token
+  }
 }

@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import './App.css';
 import {TezosToolkit} from "@taquito/taquito";
 import NavigationBar from "./components/NavigationBar";
+import {Provider} from "react-redux";
+import {store} from "./store";
 
 function App() {
     const [Tezos, setTezos] = useState<TezosToolkit>(
@@ -11,9 +13,11 @@ function App() {
     const [userAddress, setUserAddress] = useState<string>("");
 
     return (
-        <div className="App">
-            <NavigationBar/>
-        </div>
+        <Provider store={store}>
+            <div className="App">
+                <NavigationBar/>
+            </div>
+        </Provider>
     );
 }
 

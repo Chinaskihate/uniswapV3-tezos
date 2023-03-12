@@ -8,7 +8,7 @@ import {
     Link,
     Navigate
   } from "react-router-dom";
-import Exchange from "./pages/Exchange";
+import SwapPage from "./pages/swap_window/SwapPage";
 import NoPage from "./pages/NoPage";
 import Pools from "./pages/Pools";
 import TokenStats from "./pages/TokenStats";
@@ -34,7 +34,7 @@ function App() {
                 <Routes>
                     <Route path="/" element = {<Home/>}>
                         </Route>
-                    <Route path="/exchange" element = {<Exchange></Exchange>}>
+                    <Route path="/exchange" element = {<SwapPage></SwapPage>}>
                         </Route>
                     <Route path="/alltokenstats" element = {<AllTokenStats></AllTokenStats>}>
                         <Route path = "tokenstats" element = {<TokenStats></TokenStats>}>

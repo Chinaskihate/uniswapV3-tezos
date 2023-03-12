@@ -1,24 +1,15 @@
 import React from 'react';
 import '../App.css';
-import {useDispatch, useSelector} from "react-redux";
-import {bindActionCreators} from "redux";
-import {actionCreators, RootState} from "../store";
-import {userAddressReducer} from "../store/reducers/UserAddressReducer";
+import LoginButton from "./buttons/LoginButton";
+import {useSelector} from "react-redux";
+import {RootState} from "../store";
 
 const NavigationBar = () => {
-    const dispatch = useDispatch();
-    const userAddress = useSelector((state: RootState) => state.userAddress);
-    const {setUserAddress} = bindActionCreators(actionCreators, dispatch);
-
-    const setUserAddressWrapper = () => {
-        setUserAddress(Date().toLocaleUpperCase());
-        alert(userAddress);
-    }
-
+    const storeUserAddress = useSelector((state: RootState) => state.userAddress);
     return (
         <div className="navbar">
             <div className="buttons">
-                <button className="button">Exchange</button>
+                <button className="button" onClick={() => console.log(storeUserAddress)}>Exchange</button>
             </div>
             <div className="buttons">
                 <button className="button">Statistics</button>
@@ -26,9 +17,7 @@ const NavigationBar = () => {
             <div className="buttons">
                 <button className="button">Pools</button>
             </div>
-            <div className="buttons" onClick={setUserAddressWrapper}>
-                <button className="button">Login</button>
-            </div>
+            <LoginButton/>
         </div>
     );
 };

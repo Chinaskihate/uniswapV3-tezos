@@ -14,6 +14,8 @@ import NoPage from "./pages/NoPage";
 import Pools from "./pages/Pools";
 import TokenStats from "./pages/TokenStats";
 import AllTokenStats from "./pages/AllTokenStats";
+import {Provider} from "react-redux";
+import {store} from "./store";
 
 function App() {
     const [Tezos, setTezos] = useState<TezosToolkit>(
@@ -23,23 +25,25 @@ function App() {
     const [userAddress, setUserAddress] = useState<string>("");
 
     return (
-        <Router>
-            <div className="App">
-                <NavigationBar/>
-            </div>
-            <Routes>
-                <Route path="/exchange" element = {<Exchange></Exchange>}>
-            </Route>
-                <Route path="/alltokenstats" element = {<AllTokenStats></AllTokenStats>}>
-                    <Route path = "tokenstats" element = {<TokenStats></TokenStats>}>
-                    </Route>
-            </Route>
-                <Route path="/pools" element = {<Pools></Pools>}>
-            </Route>
-            <Route path="*" element={<NoPage />} />
-            </Routes>
-        </Router>
 
+        <Provider store={store}>
+            <Router>
+                <div className="App">
+                    <NavigationBar/>
+                </div>
+                <Routes>
+                    <Route path="/exchange" element = {<Exchange></Exchange>}>
+                </Route>
+                    <Route path="/alltokenstats" element = {<AllTokenStats></AllTokenStats>}>
+                        <Route path = "tokenstats" element = {<TokenStats></TokenStats>}>
+                        </Route>
+                </Route>
+                    <Route path="/pools" element = {<Pools></Pools>}>
+                </Route>
+                <Route path="*" element={<NoPage />} />
+                </Routes>
+            </Router>
+        </Provider>
     );
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import {Button} from "react-bootstrap";
 import './buttons.css';
 
-const ConnectButton = () => {
+const SwapButton = () => {
     return (
         <div>
             <Button className="col-12 rounded-default">Swap</Button>
@@ -10,4 +10,4 @@ const ConnectButton = () => {
     );
 };
 
-export default ConnectButton;
+export default SwapButton;

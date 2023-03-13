@@ -84,9 +84,9 @@ const PoolPreviewPage = () => {
                                 <Row className="text-center">
                                     <Col>
                                         <div className="flex-fill m-3">
-                                            <TwoInputs firstPlaceholder="First sell..." setFirstValue={setFirstSell}
+                                            <TwoInputs firstPlaceholder="First min..." setFirstValue={setFirstSell}
                                                        firstValue={sellFirstValue}
-                                                       secondPlaceholder="Second sell..."
+                                                       secondPlaceholder="First max..."
                                                        setSecondValue={setSecondSell}
                                                        secondValue={sellSecondValue}/>
                                         </div>
@@ -95,7 +95,7 @@ const PoolPreviewPage = () => {
                                 <Row>
                                     <Col>
                                         <div className="flex-fill m-3">
-                                            <EmptyInput placeholder="First amount..." setValue={() => {
+                                            <EmptyInput placeholder="Second amount..." setValue={() => {
                                             }} value=""/>
                                         </div>
                                     </Col>
@@ -103,8 +103,8 @@ const PoolPreviewPage = () => {
                                 <Row className="text-center">
                                     <Col>
                                         <div className="flex-fill m-3">
-                                            <TwoInputs firstPlaceholder="First buy..." setFirstValue={setFirstSell}
-                                                       firstValue={sellFirstValue} secondPlaceholder="Second buy..."
+                                            <TwoInputs firstPlaceholder="Second min..." setFirstValue={setFirstSell}
+                                                       firstValue={sellFirstValue} secondPlaceholder="Second max..."
                                                        setSecondValue={setSecondSell}
                                                        secondValue={sellSecondValue}/>
                                         </div>

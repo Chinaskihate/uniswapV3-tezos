@@ -13,7 +13,7 @@ async function bootstrap() {
     app.get(HttpErrorFilter),
     app.get(QueryErrorFilter)
   );
-  await app.listen(3000);
+  await app.listen(6000);
 }
 
 bootstrap().then(() => console.log('SERVER STARTED...'))

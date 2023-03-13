@@ -4,7 +4,8 @@ export class ExtendedStatistics extends BaseStatistics {
   constructor(price: number, change: number,
               private _totalValueLocked: number = 0,
               private _totalVolume: number = 0,
-              private _volumeForDay: number = 0) {
+              private _volumeForDay: number = 0,
+              private _icon: string = undefined) {
     super(price, change);
   }
 
@@ -20,6 +21,10 @@ export class ExtendedStatistics extends BaseStatistics {
     return this._volumeForDay
   }
 
+  get icon(): string {
+    return this._icon
+  }
+
   set volumeForDay(volumeForDay: number) {
     this._volumeForDay = volumeForDay
   }
@@ -30,5 +35,9 @@ export class ExtendedStatistics extends BaseStatistics {
 
   set totalVolume(totalVolume: number) {
     this._totalVolume = totalVolume
+  }
+
+  set icon(icon: string) {
+    this._icon = icon
   }
 }

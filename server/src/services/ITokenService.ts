@@ -1,14 +1,14 @@
-import { PriceStamp } from "../entities/tokens/priceStamp";
-import { ExtendedToken } from "../entities/tokens/extendedToken";
-import { TokenWithBaseStatistics } from "../entities/tokens/tokenWithBaseStatistics";
+import {PriceStamp} from "../entities/priceStamp";
+import {ExtendedToken} from "../entities/extendedToken";
+import {TokenWithBaseStatistics} from "../entities/tokenWithBaseStatistics";
+import {UnitOfTime} from "../utils/time_converter/unitOfTime";
+import {DeleteResult} from "typeorm";
 
 export interface ITokenService {
-  getTokenById(id: number) : ExtendedToken
-  getAllTokens(): TokenWithBaseStatistics[]
-  getAllTokensByNamePattern(name: string): TokenWithBaseStatistics[];
-  getAllPriceStamps(id: number): PriceStamp[]
-  getAllPriceStampsInHour(id: number): PriceStamp[]
-  getAllPriceStampsInDay(id: number): PriceStamp[]
-  getAllPriceStampsInWeek(id: number): PriceStamp[]
-  getAllPriceStampsInYear(id: number): PriceStamp[]
+  getTokenByAddress(address: string): Promise<ExtendedToken>
+  getAllTokens(): Promise<TokenWithBaseStatistics[]>
+  getAllTokensByNamePattern(name: string): Promise<TokenWithBaseStatistics[]>;
+  getAllPriceStampsInRange(address: string, unitOfTime: UnitOfTime): Promise<PriceStamp[]>
+  saveToken(extendedToken: ExtendedToken): Promise<ExtendedToken>
+  deleteToken(address: string): Promise<DeleteResult>
 }

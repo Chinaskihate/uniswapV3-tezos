@@ -92,13 +92,13 @@ const LoginButton = () => {
     if (storeUserAddress) {
         return (
             <div className="buttons">
-                <button className="button" onClick={disconnectWallet}>Logout</button>
+                <button className="button" onClick={disconnectWallet}>Disconnect</button>
             </div>
         );
     } else {
         return (
             <div className="buttons">
-                <button className="button" onClick={connectWallet}>Login</button>
+                <button className="button" onClick={connectWallet}>Connect</button>
             </div>
         );
     }

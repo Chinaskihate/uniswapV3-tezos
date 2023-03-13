@@ -26,8 +26,8 @@ const SwapPage = () => {
     };
 
     return (
-        <div className="d-flex justify-content-center align-items-center m-5">
-            <Container className="col-xl-4 col-lg-6 col-md-10 col-xs-12">
+        <div className="d-flex justify-content-center align-items-center pt-5" style={{height: "100vh"}}>
+            <Container className="col-xl-4 col-lg-6 col-md-10 col-xs-12 mt-5">
                 <div className={classes.change_container}>
                     <Col>
                         <Row className="text-center">

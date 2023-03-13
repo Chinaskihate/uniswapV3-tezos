@@ -11,7 +11,7 @@ import SwapPage from "./pages/swap_window/SwapPage";
 import NoPage from "./pages/NoPage";
 import Pools from "./pages/Pools";
 import TokenStats from "./pages/TokenStats";
-import AllTokenStats from "./pages/AllTokenStats";
+import AllTokenStats from "./pages/all_page/AllTokenStats";
 import {Provider} from "react-redux";
 import {store} from "./store";
 

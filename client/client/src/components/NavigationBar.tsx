@@ -6,7 +6,7 @@ import {Col, Container, Row} from "react-bootstrap";
 
 const NavigationBar = () => {
     return (
-        <Container fluid style={{padding: 0}}>
+        <Container fluid style={{padding: 0, position: "fixed", border: '10px solid #274852'}}>
             <Row className="g-0">
                 <Col>
                     <div className="buttons">

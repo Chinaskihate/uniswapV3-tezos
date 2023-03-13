@@ -75,3 +75,22 @@
 .input:focus {
     outline: none;
 }
+
+.pools-container {
+    background-color: #274852;
+}
+
+.all_container {
+    background-color: #35636e;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 2rem;
+    color: white;
+}
+
+.data {
+    border-radius: 10px;
+    background: #1e4149;
+    margin-bottom: 10%;
+}

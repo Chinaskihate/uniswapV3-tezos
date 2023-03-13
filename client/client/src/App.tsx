@@ -24,8 +24,6 @@ function Home(){
 
 
 function App() {
-  new TokenProvider().findByAddress('TestAddress2').then(x => console.log(x))
-  new TokenProvider().findAllByNames().then(x => console.log(x))
   return (
         <Provider store={store}>
             <Router>

@@ -6,3 +6,23 @@
     border-radius: 2rem;
     color: white;
 }
+
+.data {
+    border-radius: 10px;
+    background: #1e4149;
+    margin-bottom: 10%;
+}
+
+.table-cell {
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-row {
+    border-top: 2px solid #566666;
+}
+
+.data:hover {
+    cursor: pointer;
+}

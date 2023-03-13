@@ -3,15 +3,15 @@ import {TokenWithExtendedStatistics} from "../entities/tokenWithExtendedStatisti
 import {TokenWithBaseStatistics} from "../entities/tokenWithBaseStatistics";
 
 export class TokenProvider {
-  public async findAllByNames(): Promise<TokenWithBaseStatistics> {
+  public async findAllByNames(): Promise<TokenWithBaseStatistics[]> {
     try {
-      const response = await axios.get<TokenWithBaseStatistics>(
+      const response = await axios.get<TokenWithBaseStatistics[]>(
         'http://localhost:3000/api/Token/v1/names',
         { headers: { 'Access-Control-Allow-Origin': true }});
       return response.data
     } catch (error) {
       console.error(error);
-      return {} as TokenWithBaseStatistics
+      return [] as TokenWithBaseStatistics[];
     }
   }
 

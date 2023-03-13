@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, useEffect, useState} from 'react'
 import TokenStats from '../TokenStats'
 import {
     BrowserRouter as Router,
@@ -7,59 +7,54 @@ import {
     Link,
     Outlet
 } from "react-router-dom";
-import {Col, Container, ListGroup, Row, Tab} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 import "./Statistics.css";
 import {TokenWithBaseStatistics} from "../../entities/tokenWithBaseStatistics";
-import {BaseStatistics} from "../../entities/baseStatistics";
-import {DataGrid, GridColDef} from "@mui/x-data-grid";
+import {TokenProvider} from "../../provider/tokenProvider";
 
 export default function AllTokenStats() {
-    const data: Array<TokenWithBaseStatistics> = [
-        new TokenWithBaseStatistics(
-            "test 11111111111111",
-            "test short",
-            "tawjietjaiwjie",
-            new BaseStatistics(1, 1)
-        ),
-        new TokenWithBaseStatistics(
-            "test 2222222222222222222",
-            "test short",
-            "tawjietjaiwjie",
-            new BaseStatistics(1, 1)
-        ),
-        new TokenWithBaseStatistics(
-            "test 333333333333333333",
-            "test short",
-            "tawjietjaiwjie",
-            new BaseStatistics(1, 1)
-        )].flatMap(i => [i, i]);
+    const apiProvider = new TokenProvider();
+    const [data, setData] = useState<TokenWithBaseStatistics[]>([]);
+
+    useEffect(() => {
+        (async () => {
+            const serverData = await apiProvider.findAllByNames();
+            setData(serverData);
+        })();
+    }, []);
 
 
     return (
         <div className="d-flex justify-content-center mt-5 pt-5 px-5" style={{height: "100vh"}}>
-            <div className="all_container flex-fill mt-5 ml-5 mr-5">
+            <div className="all_container flex-fill mt-5 ml-5 mr-5" style={{fontSize: "2rem"}}>
                 <Container>
                     <Row>
-                        <Col xs={3}>Name</Col>
-                        <Col xs={3}>Address</Col>
-                        <Col xs={3}>Price</Col>
-                        <Col xs={3}>Change</Col>
+                        <Col xs={3} className="center">Name</Col>
+                        <Col xs={3} className="center">Address</Col>
+                        <Col xs={3} className="center">Price</Col>
+                        <Col xs={3} className="center">Change</Col>
                     </Row>
-                    {data.map(t =>
-                        <Row>
-                            <Col xs={3}>
-                                {t.fullName}
-                            </Col>
-                            <Col xs={3}>
-                                {t.address}
-                            </Col>
-                            <Col xs={3}>
-                                {t.statistics.price}
-                            </Col>
-                            <Col xs={3}>
-                                {t.statistics.change}
-                            </Col>
-                        </Row>)}
+                    <div className="mt-1 data px-3">
+                        {data.length === 0
+                            ?
+                            <Row className="table-row">Loading...</Row>
+                            :
+                            data.map(t =>
+                                <Row className="table-row">
+                                    <Col xs={3} className="center">
+                                        {t.fullName}
+                                    </Col>
+                                    <Col xs={3} className="center">
+                                        {t.address}
+                                    </Col>
+                                    <Col xs={3} className="center">
+                                        {t.statistics.price}
+                                    </Col>
+                                    <Col xs={3} className="center">
+                                        {t.statistics.change}
+                                    </Col>
+                                </Row>)}
+                    </div>
                 </Container>
             </div>
             {/*<Tab.Container id="list-group-tabs-example col-xl-12" defaultActiveKey="#link1">*/}

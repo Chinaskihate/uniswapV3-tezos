@@ -1,42 +1,62 @@
 import classes from './SwapPage.module.css'
 import {useState} from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Col, Container, Row} from "react-bootstrap";
+import DefaultInput from "../../components/inputs/DefaultInput";
+import ConnectButton from "../../components/buttons/ConnectButton";
+import {useSelector} from "react-redux";
+import {RootState} from "../../store";
+import SwapButton from "../../components/buttons/SwapButton";
 
 const SwapPage = () => {
-  const [sell_val, setSell] = useState('');
-  const [buy_val, setBuy] = useState('');
+    const [sellValue, setSell] = useState('');
+    const [buyValue, setBuy] = useState('');
+    const storeUserAddress = useSelector((state: RootState) => state.userAddress);
 
-  // @ts-ignore
-  const handle_sell = (event) => {
-    const result = event.target.value.replace(/\D/g, '');
-    setSell(result);
-  };
+    const handleSell = (value: string) => {
+        if (value.match(/^\d{1,}(\.\d{0,4})?$/)) {
+            setSell(value);
+        }
+    };
 
-  // @ts-ignore
-  const handle_buy = (event) => {
-    const result = event.target.value.replace(/\D/g, '');
-    setBuy(result);
-  };
+    const handleBuy = (value: string) => {
+        if (value.match(/^\d{1,}(\.\d{0,5})?$/)) {
+            setBuy(value);
+        }
+    };
 
-  return(
-    <div className={classes.exchange}>
-      <div className={classes.input_div}>
-        <label>Обменять </label>
-      </div>
-      <div className={classes.input_div}>
-        <div className={classes.btn}>
-          <input onChange={handle_sell} placeholder="sell 0.00" value={sell_val} className={classes.input}/>
-          <button className={classes.button}> выберите токен </button>
+    return (
+        <div className="d-flex justify-content-center align-items-center m-5">
+            <Container className="col-xl-4 col-lg-6 col-md-10 col-xs-12">
+                <div className={classes.change_container}>
+                    <Col>
+                        <Row className="text-center">
+                            <label className="flex-fill fs-1">
+                                Swap
+                            </label>
+                        </Row>
+                        <Row className="text-center">
+                            <div className="flex-fill m-3">
+                                <DefaultInput placeholder="Sell..." setValue={handleSell} value={sellValue}/>
+                            </div>
+                        </Row>
+                        <Row className="text-center">
+                            <div className="flex-fill m-3">
+                                <DefaultInput placeholder="Buy..." setValue={handleBuy} value={buyValue}/>
+                            </div>
+                        </Row>
+                        <Row className="text-center">
+                            <div className="flex-fill fs-1">
+                                {storeUserAddress
+                                    ? <SwapButton/>
+                                    : <ConnectButton/>}
+                            </div>
+                        </Row>
+                    </Col>
+                </div>
+            </Container>
         </div>
-        <div className={classes.btn}>
-          <input onChange={handle_buy} placeholder="buy 0.00" value={buy_val} className={classes.input}/>
-          <button className={classes.button}> выберите токен </button>
-        </div>
-        <div className={classes.btn}>
-          <button className={classes.button}> подключить кошелек </button>
-        </div>
-      </div>
-    </div>
-  )
+    )
 }
 
 export default SwapPage;

@@ -14,7 +14,6 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@types/react-redux": "^7.1.25",
-    "beacon": "^0.4.9",
     "bootstrap": "^5.2.3",
     "buffer": "^6.0.3",
     "react": "^18.2.0",

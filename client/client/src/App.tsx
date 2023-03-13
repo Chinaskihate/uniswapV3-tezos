@@ -5,7 +5,6 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
-    Link,
     Navigate
   } from "react-router-dom";
 import SwapPage from "./pages/swap_window/SwapPage";
@@ -25,25 +24,24 @@ function Home(){
 
 function App() {
     return (
-
         <Provider store={store}>
             <Router>
-                <div className="App">
+                <div className="app">
                     <NavigationBar/>
-                </div>
-                <Routes>
-                    <Route path="/" element = {<Home/>}>
+                    <Routes>
+                        <Route path="/" element = {<Home/>}>
                         </Route>
-                    <Route path="/exchange" element = {<SwapPage></SwapPage>}>
+                        <Route path="/exchange" element = {<SwapPage/>}>
                         </Route>
-                    <Route path="/alltokenstats" element = {<AllTokenStats></AllTokenStats>}>
-                        <Route path = "tokenstats" element = {<TokenStats></TokenStats>}>
+                        <Route path="/alltokenstats" element = {<AllTokenStats/>}>
+                            <Route path = "tokenstats" element = {<TokenStats/>}>
                             </Route>
-                    </Route>
-                    <Route path="/pools" element = {<Pools></Pools>}>
                         </Route>
-                    <Route path="*" element={<NoPage />} />
-                </Routes>
+                        <Route path="/pools" element = {<Pools/>}>
+                        </Route>
+                        <Route path="*" element={<NoPage />} />
+                    </Routes>
+                </div>
             </Router>
         </Provider>
     );

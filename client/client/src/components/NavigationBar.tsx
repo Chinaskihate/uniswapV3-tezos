@@ -2,31 +2,38 @@ import React from 'react';
 import '../App.css';
 import {Link} from 'react-router-dom';
 import LoginButton from "./buttons/LoginButton";
-import {useSelector} from "react-redux";
-import {RootState} from "../store";
+import {Col, Container, Row} from "react-bootstrap";
 
 const NavigationBar = () => {
-    const storeUserAddress = useSelector((state: RootState) => state.userAddress);
-
     return (
-        <div className="navbar">
-            <div className="buttons">
-                <Link to='/exchange'>
-                    <button className="button" onClick={() => console.log(storeUserAddress)}>Exchange</button>
-                </Link>
-            </div>
-            <div className="buttons">
-                <Link to='alltokenstats'>
-                    <button className="button">Statistics</button>
-                </Link>
-            </div>
-            <div className="buttons">
-                <Link to='pools'>
-                    <button className="button">Pools</button>
-                </Link>
-            </div>
-            <LoginButton/>
-        </div>
+        <Container fluid style={{padding: 0}}>
+            <Row className="g-0">
+                <Col>
+                    <div className="buttons">
+                        <Link to='/exchange' className="link">
+                            <button className="button">Exchange</button>
+                        </Link>
+                    </div>
+                </Col>
+                <Col>
+                    <div className="buttons">
+                        <Link to='alltokenstats' className="link">
+                            <button className="button">Statistics</button>
+                        </Link>
+                    </div>
+                </Col>
+                <Col>
+                    <div className="buttons">
+                        <Link to='pools' className="link">
+                            <button className="button">Pools</button>
+                        </Link>
+                    </div>
+                </Col>
+                <Col>
+                    <LoginButton/>
+                </Col>
+            </Row>
+        </Container>
     );
 };
 

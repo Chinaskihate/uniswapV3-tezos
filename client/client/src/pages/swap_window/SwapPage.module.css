@@ -1,5 +1,28 @@
+.change_container {
+    background-color: #35636e;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 2rem;
+    color: white;
+}
+
+.font-size {
+    font-size: 3rem;
+}
+
+.exchange {
+    margin-top: 5vh;
+    margin-left: 10vh;
+    margin-right: 10vh;
+    border-radius: 2rem;
+    min-height: 60vh;
+    max-width: 90%;
+    background-color: #35636e;
+    padding: 1rem;
+}
+
 .input_div {
-    max-width: 200px;
+    max-width: 10%;
     font-size: 25px;
     margin-right: auto;
     margin-left: auto;
@@ -14,16 +37,6 @@
     border: solid 0;
     transition: 0.2s;
     color: white;
-}
-
-.exchange {
-    width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 100px;
-    border-radius: 15px;
-    background-color: #35636e;
-    padding: 1rem;
 }
 
 .btn {

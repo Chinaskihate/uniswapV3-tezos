@@ -8,6 +8,7 @@ import {QueryErrorFilter} from "../proxy_logic/error_filters/queryErrorFilter";
 async function bootstrap() {
   config({path: 'dev.env'})
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
   app.useGlobalFilters(
     app.get(InternalServerErrorFilter),
     app.get(HttpErrorFilter),

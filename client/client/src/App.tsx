@@ -14,6 +14,7 @@ import TokenStats from "./pages/TokenStats";
 import AllTokenStats from "./pages/AllTokenStats";
 import {Provider} from "react-redux";
 import {store} from "./store";
+import {TokenProvider} from "./provider/tokenProvider";
 
 
 
@@ -23,7 +24,9 @@ function Home(){
 
 
 function App() {
-    return (
+  new TokenProvider().findByAddress('TestAddress2').then(x => console.log(x))
+  new TokenProvider().findAllByNames().then(x => console.log(x))
+  return (
         <Provider store={store}>
             <Router>
                 <div className="app">

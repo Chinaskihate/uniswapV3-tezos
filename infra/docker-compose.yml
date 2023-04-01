@@ -7,6 +7,12 @@ services:
     build: ../client/client
     ports:
       - 3000:3000
+  backend:
+    container_name: backend
+    image: backend
+    build: ../server
+    ports:
+      - 3001:3001
   postgres:
     container_name: postgres_container
     image: postgres
@@ -17,7 +23,7 @@ services:
     volumes:
        - postgres:/data/postgres
     ports:
-      - "5432:5432"
+      - "5433:5432"
     networks:
       - postgres
     restart: unless-stopped

@@ -1,6 +1,8 @@
 # compiled output
 /dist
 /node_modules
+package-lock.json
+tsconfig.build.json
 
 # Logs
 logs
@@ -35,7 +37,6 @@ lerna-debug.log*
 !.vscode/extensions.json
 /.pnp
 .pnp.js
-package-lock.json
 
 # production
 /build

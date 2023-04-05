@@ -1,6 +1,6 @@
 import {Body, Controller, Delete, Get, Inject, Param, Patch, Put, UseGuards, UseInterceptors} from "@nestjs/common";
-import {ITokenService} from "../services/ITokenService";
-import {TokenService} from "../services/tokenService";
+import {ITokenService} from "../services/token_service/ITokenService";
+import {TokenService} from "../services/token_service/tokenService";
 import {LoggerInterceptor} from "../proxy_logic/interceptors/loggerInterceptor";
 import {ResponseFormatterInterceptor} from "../proxy_logic/interceptors/responseFormatterInterceptor";
 import {UnitOfTime} from "../utils/time_converter/unitOfTime";

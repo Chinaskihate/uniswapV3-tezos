@@ -1,15 +1,15 @@
 import { HttpException, Inject, Injectable } from "@nestjs/common";
 import { ITokenService } from "./ITokenService";
-import { PriceStamp } from "../entities/priceStamp";
-import { UnitOfTime } from "../utils/time_converter/unitOfTime";
-import { TokenWithBaseStatistics } from "../entities/tokenWithBaseStatistics";
-import { ExtendedToken } from "../entities/extendedToken";
+import { PriceStamp } from "../../entities/priceStamp";
+import { UnitOfTime } from "../../utils/time_converter/unitOfTime";
+import { TokenWithBaseStatistics } from "../../entities/tokenWithBaseStatistics";
+import { ExtendedToken } from "../../entities/extendedToken";
 import { InjectRepository } from "@nestjs/typeorm";
-import { TezosTokenDB } from "../db/entities/tezosTokenDB";
+import { TezosTokenDB } from "../../db/entities/tezosTokenDB";
 import {DeleteResult, ILike, MoreThan, Repository} from "typeorm";
-import { PriceStampDB } from "../db/entities/priceStampDB";
-import { EntitiesConverter } from "../utils/entities_converter/entitiesConverter";
-import { IEntitiesConverter } from "../utils/entities_converter/IEntitiesConverter";
+import { PriceStampDB } from "../../db/entities/priceStampDB";
+import { EntitiesConverter } from "../../utils/entities_converter/entitiesConverter";
+import { IEntitiesConverter } from "../../utils/entities_converter/IEntitiesConverter";
 
 @Injectable()
 export class TokenService implements ITokenService {

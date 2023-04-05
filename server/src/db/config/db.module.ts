@@ -2,7 +2,7 @@ import {Module} from '@nestjs/common';
 import {PriceStampDB} from "../entities/priceStampDB";
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {TokenController} from "../../controllers/tokenController";
-import {TokenService} from "../../services/tokenService";
+import {TokenService} from "../../services/token_service/tokenService";
 import {TezosTokenDB} from "../entities/tezosTokenDB";
 import {EntitiesConverter} from "../../utils/entities_converter/entitiesConverter";
 import {JSON_TokenFormatter} from "../../utils/token_formatter/JSON_TokenFormatter";

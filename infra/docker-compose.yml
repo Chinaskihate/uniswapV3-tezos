@@ -15,7 +15,7 @@ services:
       - 3001:3001
     environment:
       DB_HOST: host.docker.internal
-      DB_PORT: 5432
+      DB_PORT: 5433
       DB_USERNAME: postgres
       DB_PASSWORD: postgres
       DB_NAME: postgres
@@ -28,8 +28,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
       PGDATA: /data/postgres
     volumes:
-      - postgres:/data/postgres
-      - ../server/src/db/schemas/mock_data.sql:/docker-entrypoint-initdb.d/mock_data.sql
+       - postgres:/data/postgres
     ports:
       - "5433:5432"
     networks:
@@ -44,7 +43,8 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
       PGADMIN_CONFIG_SERVER_MODE: 'False'
     volumes:
-      - pgadmin:/var/lib/pgadmin
+       - pgadmin:/var/lib/pgadmin
+
     ports:
       - "${PGADMIN_PORT:-5050}:80"
     networks:
@@ -56,10 +56,5 @@ networks:
     driver: bridge
 
 volumes:
-<<<<<<< HEAD
-  postgres:
-  pgadmin:
-=======
     postgres:
     pgadmin:
->>>>>>> 0789f39f30599bf6faf752152607f4f0e9abc813

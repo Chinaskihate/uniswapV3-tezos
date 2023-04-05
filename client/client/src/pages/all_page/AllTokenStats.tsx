@@ -24,25 +24,27 @@ export default function AllTokenStats() {
     useEffect(() => {
         (async () => {
             const serverData = await apiProvider.findAllByNames();
-            console.log("server data type: " + typeof serverData);
+            //TODO Fix tokenProvider return type
             setData(serverData);
         })();
     }, []);
 
     const handleTokenStatsClick = async (token: TokenWithBaseStatistics) => {
         setShowModal(true);
-        console.log("Opening token stats for: " + token.address);
+        console.log("Getting token stats: " + token.address);
         
         try {
           const extendedTokenStats = await apiProvider.findByAddress(token.address);
-          setSelectedToken((prev) => prev ? new TokenWithExtendedStatistics(prev.fullName, prev.shortName, prev.address, extendedTokenStats.statistics) : undefined);
+          console.log("Fetched token: " + extendedTokenStats.fullName)
+          setSelectedToken(extendedTokenStats);
         } catch (error) {
           console.error(error);
         }
     };
     const handleCloseModal = () => setShowModal(false);
     
-
+    //TODO add pricestamps to modal
+    //TODO make stats modal less ugly
     return (
         <div className="d-flex justify-content-center mt-5 pt-5 px-5" style={{height: "100vh"}}>
             <div className="all_container flex-fill mt-5 ml-5 mr-5" style={{fontSize: "2rem"}}>

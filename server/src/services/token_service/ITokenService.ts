@@ -1,7 +1,7 @@
-import {PriceStamp} from "../entities/priceStamp";
-import {ExtendedToken} from "../entities/extendedToken";
-import {TokenWithBaseStatistics} from "../entities/tokenWithBaseStatistics";
-import {UnitOfTime} from "../utils/time_converter/unitOfTime";
+import {PriceStamp} from "../../entities/priceStamp";
+import {ExtendedToken} from "../../entities/extendedToken";
+import {TokenWithBaseStatistics} from "../../entities/tokenWithBaseStatistics";
+import {UnitOfTime} from "../../utils/time_converter/unitOfTime";
 import {DeleteResult} from "typeorm";
 
 export interface ITokenService {

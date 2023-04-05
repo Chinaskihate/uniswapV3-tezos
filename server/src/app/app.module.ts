@@ -1,6 +1,6 @@
 import {Module} from "@nestjs/common";
 import {TokenController} from "../controllers/tokenController";
-import {TokenService} from "../services/tokenService";
+import {TokenService} from "../services/token_service/tokenService";
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {PriceStampDB} from "../db/entities/priceStampDB";
 import {TezosTokenDB} from "../db/entities/tezosTokenDB";
@@ -15,6 +15,8 @@ import {InternalServerErrorFilter} from "../proxy_logic/error_filters/internalSe
 import {BaseErrorFilter} from "../proxy_logic/error_filters/baseErrorFilter";
 import {TezosAdminDB} from "../db/entities/tezosAdminDB";
 import {AuthService} from "../proxy_logic/auth/authService";
+import {ScheduleModule, SchedulerRegistry} from '@nestjs/schedule';
+import {ContractService} from "../services/contract_service/ContractService";
 
 @Module({
   imports: [
@@ -36,6 +38,7 @@ import {AuthService} from "../proxy_logic/auth/authService";
       ],
       synchronize: true,
     }),
+    ScheduleModule.forRoot(),
     DB_Module,
   ],
   controllers: [TokenController],
@@ -48,7 +51,9 @@ import {AuthService} from "../proxy_logic/auth/authService";
     TokenService,
     EntitiesConverter,
     JSON_TokenFormatter,
-    AuthService
+    AuthService,
+    ContractService,
+    SchedulerRegistry
   ],
 })
 export class AppModule {}

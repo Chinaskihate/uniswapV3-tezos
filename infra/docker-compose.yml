@@ -56,5 +56,10 @@ networks:
     driver: bridge
 
 volumes:
+<<<<<<< HEAD
   postgres:
   pgadmin:
+=======
+    postgres:
+    pgadmin:
+>>>>>>> 0789f39f30599bf6faf752152607f4f0e9abc813

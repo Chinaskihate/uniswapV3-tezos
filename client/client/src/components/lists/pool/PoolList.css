@@ -1,0 +1,21 @@
+.pool-list-container {
+    background-color: #060a0b;
+    max-height: 400px; /* set a max-height so that the list doesn't overflow */
+}
+
+.pool-list-container > div {
+    cursor: pointer;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: #000000;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.pool-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}

@@ -8,6 +8,8 @@ import SwapButton from "../../components/buttons/SwapButton";
 import TwoInputs from "../../components/inputs/TwoInputs";
 import EmptyInput from "../../components/inputs/EmptyInput";
 import CreatePoolButton from "../../components/buttons/CreatePoolButton";
+import PoolList from "../../components/lists/pool/PoolList";
+import Pool from "../../components/lists/pool/IPool";
 
 const PoolPreviewPage = () => {
     const [sellFirstValue, setFirstSell] = useState('');
@@ -41,32 +43,80 @@ const PoolPreviewPage = () => {
         }
     };
 
+    const handlePoolClick = (id: number) => {
+        //TODO Add modal for pool stats
+        console.log(id);
+    }
+
+
+    // TODO Replace mock-data with data fetching
+    const fetchedPools: Pool[] = [
+        {
+          id: 1,
+          tokenPair: 'ETH/BTC',
+          minValue: 0.1,
+          maxValue: 0.14,
+          percentage: 1,
+        },
+        {
+          id: 2,
+          tokenPair: 'Token 2 / Token 3',
+          minValue: 0.96,
+          maxValue: 1.1,
+          percentage: 1,
+        },
+        {
+          id: 3,
+          tokenPair: 'Token 1 / Token 3',
+          minValue: 0.45,
+          maxValue: 0.654,
+          percentage: 1,
+        },
+        {
+          id: 3,
+          tokenPair: 'Token 1 / Token 3',
+          minValue: 0.45,
+          maxValue: 0.654,
+          percentage: 1,
+        },
+        {
+          id: 3,
+          tokenPair: 'Token 1 / Token 3',
+          minValue: 0.45,
+          maxValue: 0.654,
+          percentage: 1,
+        },
+        {
+          id: 3,
+          tokenPair: 'Token 1 / Token 3',
+          minValue: 0.45,
+          maxValue: 0.654,
+          percentage: 1,
+        }
+      ];
+    // TODO Make the text in input smaller
     return (
-        <div className="d-flex justify-content-center align-items-center pt-5" style={{height: "100vh"}}>
-            <Container className="col-xl-12 col-lg-12 col-md-10 col-xs-12 mt-5">
-                <div className={classes.change_container}>
-                    <Row>
-                        <Col>
-                            <div className="col-xl-3">
-                                <Row>
-                                    <div className="fs-1">Pools:</div>
-                                </Row>
-                                <Row className="g-0">
-                                    <div className="d-flex"
-                                         style={{height: "100%"}}>
-                                        <div className="flex-fill"
-                                             style={{fontSize: "2rem"}}>
-                                            <Container>
-                                                <div className="mt-1 data px-3">
-                                                    <Row className="table-row">Loading...</Row>
-                                                </div>
-                                            </Container>
-                                        </div>
-                                    </div>
-                                </Row>
-                            </div>
-                        </Col>
-                        <div className="col-xl-9">
+        <div className="d-flex justify-content-center align-items-center pt-5 mt-4" style={{ height: '100vh', zIndex: 1 }}>
+        <Container className="col-xl-12 col-lg-12 col-md-10 col-xs-12 mt-5">
+          <div className={classes.change_container}>
+            <Row>
+              <Col>
+                <div className="col-xl-12">
+                  <Row className = "text-center">
+                    <div className="fs-1">Pools:</div>
+                  </Row>
+                  <Row className="g-0">
+                    <div className="d-flex" style={{ height: '500px' }}>
+                      <div className="flex-fill" style={{ fontSize: '2rem', overflowY: 'auto' }}>
+                        <Container>
+                          <PoolList pools={fetchedPools} onClick={handlePoolClick}></PoolList>
+                        </Container>
+                      </div>
+                    </div>
+                  </Row>
+                </div>
+              </Col>
+                        <div className="col-xl-4">
                             <Col>
                                 <Row className="text-center">
                                     <label className="flex-fill fs-1">

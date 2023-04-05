@@ -4,9 +4,11 @@ import {Link} from 'react-router-dom';
 import LoginButton from "./buttons/LoginButton";
 import {Col, Container, Row} from "react-bootstrap";
 
+
+// TODO Add button re-coloring when pressed
 const NavigationBar = () => {
     return (
-        <Container fluid style={{padding: 0, position: "fixed", border: '10px solid #274852'}}>
+        <Container fluid style={{padding: 0, position: "fixed", border: '10px solid #274852', zIndex: 10}}>
             <Row className="g-0">
                 <Col>
                     <div className="buttons">

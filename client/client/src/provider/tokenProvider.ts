@@ -8,13 +8,16 @@ export class TokenProvider {
         method: 'GET',
         headers: { 'Access-Control-Allow-Origin': '*' },
       });
-      return await response.json();
+      const data = await response.json() as TokenWithBaseStatistics[];
+      const ret =  Array.isArray(data) ? data : [];
+      console.log("Provider data type: " + typeof ret);
+      console.log("Provider data: " + ret);
+      return ret;
     } catch (error) {
       console.error(error);
-      return [] as TokenWithBaseStatistics[];
+      return [];
     }
   }
-
 
   public async findByAddress(address: string): Promise<TokenWithExtendedStatistics> {
     try {
@@ -28,6 +31,5 @@ export class TokenProvider {
       return {} as TokenWithExtendedStatistics;
     }
   }
-
 
 }

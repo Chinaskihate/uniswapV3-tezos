@@ -36,6 +36,7 @@ export default function AllTokenStats() {
         try {
           const extendedTokenStats = await apiProvider.findByAddress(token.address);
           console.log("Fetched token: " + extendedTokenStats.fullName)
+          console.log("Price stamp" + extendedTokenStats.statistics)
           setSelectedToken(extendedTokenStats);
         } catch (error) {
           console.error(error);
@@ -66,29 +67,40 @@ export default function AllTokenStats() {
                 </Container>
             </div>
             
-                    <Modal show={showModal} onHide={handleCloseModal}>
-                        <Modal.Header closeButton>
-                            <Modal.Title>{selectedToken?.fullName} Stats</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            {selectedToken? ( 
-                                <div>
-                                <div>Full Name: {selectedToken.fullName}</div>
-                                    <div>Address: {selectedToken.address}</div>
-                                    <div>Total Volume: {selectedToken.statistics.totalVolume}</div>
-                                    <div>Total Value Locked: {selectedToken.statistics.totalValueLocked}</div>
-                                    <div>Volume For Day: {selectedToken.statistics.volumeForDay}</div>
-                                    <div>Volume For Day: {selectedToken.statistics.volumeForDay}</div>
-                                </div>
-                            ) :
-                            <div>Loading...</div>}
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={handleCloseModal}>
-                                Close
-                            </Button>
-                        </Modal.Footer>
-                    </Modal>
+            <Modal show={showModal} onHide={handleCloseModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>{selectedToken?.fullName} Statistics</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className='custom=modal-body'>
+                    {selectedToken ? (
+                    <Row>
+                        <Col className="col-6">
+                            <div className="modal-label">Full Name:</div>
+                            <div className="modal-value">{selectedToken.fullName}</div>
+                            <div className="modal-label">Address:</div>
+                            <div className="modal-value">{selectedToken.address}</div>
+                            <div className="modal-label">Total Volume:</div>
+                            <div className="modal-value">{selectedToken.statistics.totalVolume}</div>
+                        </Col>
+                        <Col className="col-6">
+                            <div className="modal-label">Total Value Locked:</div>
+                            <div className="modal-value">{selectedToken.statistics.totalValueLocked}</div>
+                            <div className="modal-label">Volume For Day:</div>
+                            <div className="modal-value">{selectedToken.statistics.volumeForDay}</div>
+                            <div className="modal-label">Volume For Day:</div>
+                            <div className="modal-value">{selectedToken.statistics.volumeForDay}</div>
+                        </Col>
+                    </Row>
+                    ) : (
+                    <div>Loading...</div>
+                    )}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleCloseModal}>
+                    Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     )
 }

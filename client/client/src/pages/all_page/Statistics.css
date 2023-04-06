@@ -26,3 +26,24 @@
 .data:hover {
     cursor: pointer;
 }
+
+.modal-label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+.modal-value {
+    background-color: #f0f0f0;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.custom-modal-body {
+    display: flex;
+  }
+  
+  .custom-modal-column {
+    flex: 1;
+    margin-right: 20px;
+  }

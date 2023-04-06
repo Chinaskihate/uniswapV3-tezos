@@ -45,16 +45,15 @@ export default function AllTokenStats() {
     const handleCloseModal = () => setShowModal(false);
     
     //TODO add pricestamps to modal
-    //TODO make stats modal less ugly
     return (
         <div className="d-flex justify-content-center mt-5 pt-5 px-5" style={{height: "100vh"}}>
             <div className="all_container flex-fill mt-5 ml-5 mr-5" style={{fontSize: "2rem"}}>
                 <Container>
                     <Row>
                         <Col xs={3} className="center">Name</Col>
-                        <Col xs={3} className="center">Address</Col>
+                        <Col xs={3} className="center"></Col>
+                        <Col xs={3} className="center"></Col>
                         <Col xs={3} className="center">Price</Col>
-                        <Col xs={3} className="center">Change</Col>
                     </Row>
                     <div className="mt-1 data px-3">
                         {data.length === 0
@@ -67,11 +66,11 @@ export default function AllTokenStats() {
                 </Container>
             </div>
             
-            <Modal show={showModal} onHide={handleCloseModal}>
-                <Modal.Header closeButton>
+            <Modal show={showModal} onHide={handleCloseModal} className="custom">
+                <Modal.Header closeButton className="custom-modal-header">
                     <Modal.Title>{selectedToken?.fullName} Statistics</Modal.Title>
                 </Modal.Header>
-                <Modal.Body className='custom=modal-body'>
+                <Modal.Body className='custom-modal-body'>
                     {selectedToken ? (
                     <Row>
                         <Col className="col-6">
@@ -95,8 +94,8 @@ export default function AllTokenStats() {
                     <div>Loading...</div>
                     )}
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseModal}>
+                <Modal.Footer className="custom-modal-header">
+                    <Button variant="secondary" onClick={handleCloseModal} className="modal-button">
                     Close
                     </Button>
                 </Modal.Footer>

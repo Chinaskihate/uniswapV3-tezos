@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
+import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Unique} from "typeorm";
 import { TezosTokenDB } from "./tezosTokenDB";
 
 @Entity({name: 'price_stamp'})
@@ -16,6 +16,7 @@ export class PriceStampDB {
   @ManyToOne(() => TezosTokenDB, token => token.priceStamps, {
     onDelete: 'CASCADE', onUpdate: 'CASCADE'
   })
+  @JoinColumn({ name: "token_address" })
   token: TezosTokenDB
 
   constructor(price?:number, time_stamp?:Date,  token?:TezosTokenDB) {

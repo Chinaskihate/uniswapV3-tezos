@@ -9,7 +9,7 @@ create table tezos_token
     full_name          varchar not null,
     short_name         varchar not null,
     price              integer not null,
-    change             integer not null,
+    change_for_day     integer not null,
     total_value_locked integer not null,
     total_volume       integer not null,
     volume_for_day     integer not null,

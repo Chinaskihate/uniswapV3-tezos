@@ -15,8 +15,8 @@ export class TezosTokenDB {
   @Column({name: 'price'})
   price: number
 
-  @Column({name: 'change'})
-  change: number
+  @Column({name: 'change_for_day'})
+  change_for_day: number
 
   @Column({name: 'total_value_locked'})
   totalValueLocked: number
@@ -44,7 +44,7 @@ export class TezosTokenDB {
     this.shortName = shortName
     this.address = address
     this.price = price
-    this.change = change
+    this.change_for_day = change
     this.totalValueLocked = totalValueLocked
     this.totalVolume = totalVolume
     this.volumeForDay = volumeForDay

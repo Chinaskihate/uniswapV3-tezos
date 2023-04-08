@@ -1,12 +1,12 @@
 import { BaseStatistics } from "./baseStatistics";
 
 export class ExtendedStatistics extends BaseStatistics {
-  constructor(price: number, change: number,
+  constructor(price: number, change_for_day: number,
               private _totalValueLocked: number = 0,
               private _totalVolume: number = 0,
               private _volumeForDay: number = 0,
               private _icon: string = undefined) {
-    super(price, change);
+    super(price, change_for_day);
   }
 
   get totalValueLocked(): number {

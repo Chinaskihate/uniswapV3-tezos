@@ -22,7 +22,7 @@ export class EntitiesConverter implements IEntitiesConverter {
     const extendedToken: ExtendedToken = new ExtendedToken(
       tezosTokenDB.fullName, tezosTokenDB.shortName,
       tezosTokenDB.address, new ExtendedStatistics(
-        tezosTokenDB.price, tezosTokenDB.change, tezosTokenDB.totalValueLocked,
+        tezosTokenDB.price, tezosTokenDB.change_for_day, tezosTokenDB.totalValueLocked,
         tezosTokenDB.totalVolume, tezosTokenDB.volumeForDay, tezosTokenDB.icon
       )
     )
@@ -36,7 +36,7 @@ export class EntitiesConverter implements IEntitiesConverter {
     return new TokenWithBaseStatistics(
       tezosTokenDB.fullName, tezosTokenDB.shortName,
       tezosTokenDB.address, new BaseStatistics(
-        tezosTokenDB.price, tezosTokenDB.change
+        tezosTokenDB.price, tezosTokenDB.change_for_day
       )
     )
   }
@@ -45,7 +45,7 @@ export class EntitiesConverter implements IEntitiesConverter {
     return new TokenWithExtendedStatistics(
       tezosTokenDB.fullName, tezosTokenDB.shortName,
       tezosTokenDB.address, new ExtendedStatistics(
-        tezosTokenDB.price, tezosTokenDB.change, tezosTokenDB.totalValueLocked,
+        tezosTokenDB.price, tezosTokenDB.change_for_day, tezosTokenDB.totalValueLocked,
         tezosTokenDB.totalVolume, tezosTokenDB.volumeForDay, tezosTokenDB.icon
       )
     )

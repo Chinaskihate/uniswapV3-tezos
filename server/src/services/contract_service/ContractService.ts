@@ -4,6 +4,7 @@ import {TezosToolkit} from "@taquito/taquito";
 import {SchedulerRegistry} from "@nestjs/schedule";
 import {ITokenService} from "../token_service/ITokenService";
 import {TokenService} from "../token_service/tokenService";
+import {InMemorySigner} from "@taquito/signer";
 
 
 @Injectable()
@@ -15,7 +16,7 @@ export class ContractService implements IContractService, OnModuleInit {
   constructor(@Inject(SchedulerRegistry)
               private readonly _schedulerRegistry: SchedulerRegistry,
               @Inject(TokenService)
-              private readonly _tokenConverter: ITokenService) {
+              private readonly _tokenService: ITokenService) {
     this.RPC_ADDRESS = process.env.RPC_ADDRESS
     this.CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS
     this.toolkit = new TezosToolkit(this.RPC_ADDRESS);
@@ -36,15 +37,31 @@ export class ContractService implements IContractService, OnModuleInit {
     //     let y = await x.allowances.get('tz1KqTpEZ7Yob7QbPE4Hy4Wo8fHG8LhKxZSx')
     //     console.log(y)
     //   })
+
+    this.toolkit.setProvider({
+      signer: new InMemorySigner(
+        "edsk3S4ZXd2n11BS29PCmFE5QHbvjMdyBJeiB2JEA4WbR6BKgs3WeZ"
+      ),
+    });
+
+    // this.toolkit
+    //   .contract
+    //   .at('KT1N3AsZXbdscjACqpgM1imzURd8fRXoFE8F')
+    //   .then((contract) => {
+    //     return contract.methods.getBalance(
+    //       'tz1KqTpEZ7Yob7QbPE4Hy4Wo8fHG8LhKxZSx',
+    //       'KT1KaRYv1d23GrTqdwWKPo66JMRTsHVb5prY'
+    //     ).send()
+    //   })
+    //   .then(x => x.confirmation(5))
+    // @ts-ignore
     this.toolkit.contract
-      .at('KT1Ccr6ZMeB1mp9yJAqJTHK7F4xoFV9uc11T')
-      .then((contract) => {
-        return contract.views
-          .balance_of([{ owner: 'tz1c1X8vD4pKV9TgV1cyosR7qdnkc8FTEyM1', token_id: '0' }])
-          .read();
-      })
-      .then((response) => {
-        console.log(JSON.stringify(response, null, 2));
+      .at('KT1N3AsZXbdscjACqpgM1imzURd8fRXoFE8F')
+      .then(contract => contract.storage())
+      .then(x => {
+
+        // @ts-ignore
+        console.log(x.toNumber())
       })
   }
 

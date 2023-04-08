@@ -1,5 +1,5 @@
 export class BaseStatistics {
-  constructor(private _price: number, private _change: number) {
+  constructor(private _price: number, private _change_for_day: number) {
   }
 
   get price(): number {
@@ -7,14 +7,14 @@ export class BaseStatistics {
   }
 
   get change(): number {
-    return this._change
+    return this._change_for_day
   }
 
   set price(price: number) {
     this._price = price
   }
 
-  set change(change: number) {
-    this._change = change
+  set change(change_for_day: number) {
+    this._change_for_day = change_for_day
   }
 }

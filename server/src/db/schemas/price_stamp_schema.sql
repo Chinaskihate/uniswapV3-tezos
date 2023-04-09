@@ -8,12 +8,12 @@ create table price_stamp
             primary key,
     time_stamp     timestamp with time zone not null,
     price          integer                  not null,
-    "tokenAddress" varchar
+    token_address varchar
         constraint "FK_32170ce7300425c5c2e30e69d4c"
             references tezos_token
             on update cascade on delete cascade,
     constraint unique_price_stamp
-        unique (time_stamp, "tokenAddress")
+        unique (time_stamp, token_address)
 );
 
 alter table price_stamp

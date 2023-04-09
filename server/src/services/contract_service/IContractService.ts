@@ -1,3 +1,3 @@
 export interface IContractService {
-  fetchContractData(): void
+  updateTokenData(): Promise<void>
 }

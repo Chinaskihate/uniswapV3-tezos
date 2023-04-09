@@ -3,8 +3,8 @@ import { I_JSON_TokenFormatter } from "./I_JSON_TokenFormatter";
 export class JSON_TokenFormatter implements I_JSON_TokenFormatter {
   private static readonly fields: string[] = [
     'id', 'fullName', 'shortName', 'address', 'statistics',
-    'price', 'change', 'totalValueLocked', 'totalVolume', 'volumeForDay',
-    'priceStampsAllTime', 'timeStamp', "icon",
+    'price', 'changeForDay', 'totalValueLocked', 'totalVolume', 'volumeForDay',
+    'priceStampsAllTime', 'timeStamp', 'icon',
   ]
 
   /**

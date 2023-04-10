@@ -6,7 +6,7 @@ export class BaseStatistics {
     return this._price
   }
 
-  get change(): number {
+  get changeForDay(): number {
     return this._changeForDay
   }
 
@@ -14,7 +14,7 @@ export class BaseStatistics {
     this._price = price
   }
 
-  set change(changeForDay: number) {
+  set changeForDay(changeForDay: number) {
     this._changeForDay = changeForDay
   }
 }

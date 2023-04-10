@@ -58,7 +58,7 @@ export class EntitiesConverter implements IEntitiesConverter {
   convertToTezosDBToken(token: ExtendedToken): TezosTokenDB {
     return new TezosTokenDB(
         token.fullName, token.shortName, token.address,
-        token.statistics.price, token.statistics.change,
+        token.statistics.price, token.statistics.changeForDay,
         token.statistics.totalValueLocked, token.statistics.totalVolume,
         token.statistics.volumeForDay, token.statistics.icon
     )

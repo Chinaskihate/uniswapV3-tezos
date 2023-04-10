@@ -20,8 +20,8 @@ services:
       DB_PASSWORD: postgres
       DB_NAME: postgres
       RPC_ADDRESS: https://ghostnet.ecadinfra.com
-      CONTRACT_ADDRESS: KT1SL5eeKn8FKuKxdEXw43naShNwp6BTECvM
-      CONTRACT_TIMEOUT_MS: 20000
+      MONITOR_CONTRACT_ADDRESS: KT1GtxCTNc3moxDXdZhuLMqwsp3dGABh4Sby
+      PRICE_UPDATE_TIMEOUT: 20000
     depends_on: [postgres]
   postgres:
     container_name: postgres_container

@@ -10,6 +10,7 @@ import {DeleteResult, ILike, MoreThan, Repository} from "typeorm";
 import { PriceStampDB } from "../../db/entities/priceStampDB";
 import { EntitiesConverter } from "../../utils/entities_converter/entitiesConverter";
 import { IEntitiesConverter } from "../../utils/entities_converter/IEntitiesConverter";
+import {TokenWithExtendedStatistics} from "../../entities/tokenWithExtendedStatistics";
 
 @Injectable()
 export class TokenService implements ITokenService {
@@ -57,6 +58,18 @@ export class TokenService implements ITokenService {
           .convertToExtendedToken(token, stamps)
         )
       )
+  }
+
+  getTokenByAddressWithoutStamps(address: string) : Promise<TokenWithExtendedStatistics> {
+    return this._tokenRepository
+      .findOneBy({ address })
+      .then(token => {
+        if (token == undefined) {
+          throw new HttpException('token not found', 404)
+        }
+        return this._tokenConverter
+          .convertToTokenWithExtendedStatistics(token)
+      })
   }
 
   getAllPriceStampsInRange(address: string, unitOfTime: UnitOfTime):

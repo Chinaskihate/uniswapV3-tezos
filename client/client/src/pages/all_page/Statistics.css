@@ -25,13 +25,21 @@
 
 .data:hover {
     cursor: pointer;
-}
+}   
 
 .modal-stats {
     background-color: #35636e;
 }
 
 .custom-modal {
+    width: 70vw;
+    margin-left: 15%;
+
+    height: 110vh;
+}
+
+.test {
+    
     margin-right: 30%;
     margin-left: 30%;
     margin-top: 10%;

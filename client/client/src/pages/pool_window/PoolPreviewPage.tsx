@@ -10,6 +10,8 @@ import EmptyInput from "../../components/inputs/EmptyInput";
 import CreatePoolButton from "../../components/buttons/CreatePoolButton";
 import PoolList from "../../components/lists/pool/PoolList";
 import Pool from "../../components/lists/pool/IPool";
+import { Modal } from "react-bootstrap";
+import {Button} from 'react-bootstrap';
 
 const PoolPreviewPage = () => {
     const [sellFirstValue, setFirstSell] = useState('');
@@ -43,11 +45,29 @@ const PoolPreviewPage = () => {
         }
     };
 
-    const handlePoolClick = (id: number) => {
-        //TODO Add modal for pool stats
-        console.log(id);
-    }
+    const handlePoolClick = async (pool: Pool) => {
+      setShowModal(true);
+      console.log("Getting pool stats: " + pool.tokenPair);
+      
+      try {
+        // Fetching to be added
+        /*
+        const extendedTokenStats = await apiProvider.findByAddress(token.address);
+        console.log("Fetched token: " + extendedTokenStats.fullName)
+        console.log("Price stamp" + extendedTokenStats.statistics)
+        */
+        setSelectedPool(pool);
+      } catch (error) {
+        console.error(error);
+      }
+  };
 
+    const [showModal, setShowModal] = useState(false);
+    
+    const handleCloseModal = () => setShowModal(false);
+
+    
+    const [selectedPool, setSelectedPool] = useState<Pool>();
 
     // TODO Replace mock-data with data fetching
     const fetchedPools: Pool[] = [
@@ -108,7 +128,7 @@ const PoolPreviewPage = () => {
                   <Row className="g-0">
                     <div className="d-flex" style={{ height: '500px' }}>
                       <div className="flex-fill" style={{ fontSize: '2rem', overflowY: 'auto' }}>
-                        <Container>
+                        <Container className = "pool-list">
                           <PoolList pools={fetchedPools} onClick={handlePoolClick}></PoolList>
                         </Container>
                       </div>
@@ -172,6 +192,40 @@ const PoolPreviewPage = () => {
                     </Row>
                 </div>
             </Container>
+            <Modal show={showModal} onHide={handleCloseModal} className="custom">
+                <Modal.Header closeButton className="custom-modal-header">
+                    <Modal.Title>{selectedPool?.tokenPair} Pool Statistics</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className='custom-modal-body'>
+                    {selectedPool ? (
+                    <Row>
+                        <Col className="col-6">
+                            <div className="modal-label">Token pair:</div>
+                            <div className="modal-value">{selectedPool.tokenPair}</div>
+                            <div className="modal-label">Max value:</div>
+                            <div className="modal-value">{selectedPool.maxValue}</div>
+                            <div className="modal-label">Min value:</div>
+                            <div className="modal-value">{selectedPool.minValue}</div>
+                        </Col>
+                        <Col className="col-6"> 
+                            <div className="modal-label">Test bla bla:</div>
+                            <div className="modal-value">"Здесть что-то будет"</div>
+                            <div className="modal-label">Test bla bla:</div>
+                            <div className="modal-value">"Здесть что-то будет"</div>
+                            <div className="modal-label">Test bla bla:</div>
+                            <div className="modal-value">"Здесть что-то будет"</div>
+                        </Col>
+                    </Row>
+                    ) : (
+                    <div>Loading...</div>
+                    )}
+                </Modal.Body>
+                <Modal.Footer className="custom-modal-header">
+                    <Button variant="secondary" onClick={handleCloseModal} className="modal-button">
+                    Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     )
 }

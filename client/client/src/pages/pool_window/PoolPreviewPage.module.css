@@ -31,6 +31,10 @@
     color: white;
 }
 
+.pool-list:hover {
+    cursor:crosshair;
+}
+
 .input {
     padding: 1rem;
     background-color: #274852;
@@ -76,9 +80,7 @@
     outline: none;
 }
 
-.pools-container {
-    background-color: #274852;
-}
+
 
 .all_container {
     background-color: #35636e;

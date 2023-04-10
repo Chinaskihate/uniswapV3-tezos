@@ -14,8 +14,16 @@
     font-size: 18px;
 }
 
+.pool-list-container:hover {
+    cursor: crosshair;
+}
+
 .pool-list {
     list-style: none;
     padding: 0;
     margin: 0;
+}
+
+.pool-list:hover {
+    cursor:crosshair;
 }

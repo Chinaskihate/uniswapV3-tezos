@@ -32,15 +32,16 @@ const TokenStatsList: FC<Props> = ({ tokens, onClick }) => {
               <div>${t.statistics.price}</div>
               <div
                 style={{
-                  color: t.statistics.change > 0 ? 'green' : 'red',
+                  color: t.statistics.changeForDay > 0 ? 'green' : 'red',
                   fontSize: '1rem',
                 }}
               >
-                {(t.statistics.change > 0 ? '+' : '') + t.statistics.change}%
+                {(t.statistics.changeForDay > 0 ? '+' : '') + t.statistics.changeForDay}%
               </div>
             </Col>
           </Row>
         ))
+        
       )}
     </div>
   );

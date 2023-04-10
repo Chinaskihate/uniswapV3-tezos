@@ -5,9 +5,11 @@ import {TokenWithBaseStatistics} from "../../entities/tokenWithBaseStatistics";
 import { TokenWithExtendedStatistics } from "../../entities/tokenWithExtendedStatistics";
 import {BaseStatistics} from "../../entities/baseStatistics";
 import {TokenProvider} from "../../provider/tokenProvider";
+import { PriceStamp } from "../../entities/priceStamp";
 import TokenStatsList from '../../components/lists/token-stats/TokenStatsList';
 import { Modal } from "react-bootstrap";
 import {Button} from "react-bootstrap";
+import PriceChart from "../../components/charts/priceChart";
 
 
 export default function AllTokenStats() {
@@ -15,6 +17,7 @@ export default function AllTokenStats() {
 
     const [showModal, setShowModal] = useState(false);
     const [selectedToken, setSelectedToken] = useState<TokenWithExtendedStatistics>();
+    const [selectedPriceStamps, setSelectedPriceStamps] = useState<PriceStamp[]>();
 
     
 
@@ -24,7 +27,6 @@ export default function AllTokenStats() {
     useEffect(() => {
         (async () => {
             const serverData = await apiProvider.findAllByNames();
-            //TODO Fix tokenProvider return type
             setData(serverData);
         })();
     }, []);
@@ -35,9 +37,11 @@ export default function AllTokenStats() {
         
         try {
           const extendedTokenStats = await apiProvider.findByAddress(token.address);
-          console.log("Fetched token: " + extendedTokenStats.fullName)
-          console.log("Price stamp" + extendedTokenStats.statistics)
+          console.log("Fetched token: " + extendedTokenStats.fullName);
           setSelectedToken(extendedTokenStats);
+          const priceStamps = await apiProvider.findPriceStampsByAddress(token.address);
+          console.log("Fetched price stamps: " + priceStamps);
+          setSelectedPriceStamps(priceStamps);
         } catch (error) {
           console.error(error);
         }
@@ -46,6 +50,7 @@ export default function AllTokenStats() {
     
     //TODO add pricestamps to modal
     return (
+        <div>
         <div className="d-flex justify-content-center mt-5 pt-5 px-5" style={{height: "100vh"}}>
             <div className="all_container flex-fill mt-5 ml-5 mr-5" style={{fontSize: "2rem"}}>
                 <Container>
@@ -65,8 +70,8 @@ export default function AllTokenStats() {
                     </div>
                 </Container>
             </div>
-            
-            <Modal show={showModal} onHide={handleCloseModal} className="custom">
+        </div>
+            <Modal show={showModal} onHide={handleCloseModal} className="custom-modal">
                 <Modal.Header closeButton className="custom-modal-header">
                     <Modal.Title>{selectedToken?.fullName} Statistics</Modal.Title>
                 </Modal.Header>
@@ -75,19 +80,18 @@ export default function AllTokenStats() {
                     <Row>
                         <Col className="col-6">
                             <div className="modal-label">Full Name:</div>
-                            <div className="modal-value">{selectedToken.fullName}</div>
+                            <div className="modal-value">{selectedToken?.fullName}</div>
                             <div className="modal-label">Address:</div>
-                            <div className="modal-value">{selectedToken.address}</div>
+                            <div className="modal-value">{selectedToken?.address}</div>
                             <div className="modal-label">Total Volume:</div>
-                            <div className="modal-value">{selectedToken.statistics.totalVolume}</div>
+                            <div className="modal-value">{selectedToken?.statistics.totalVolume}</div> 
+                            <PriceChart data={selectedPriceStamps as PriceStamp[]}></PriceChart>
                         </Col>
                         <Col className="col-6">
                             <div className="modal-label">Total Value Locked:</div>
-                            <div className="modal-value">{selectedToken.statistics.totalValueLocked}</div>
+                            <div className="modal-value">{selectedToken?.statistics.totalValueLocked}</div>
                             <div className="modal-label">Volume For Day:</div>
-                            <div className="modal-value">{selectedToken.statistics.volumeForDay}</div>
-                            <div className="modal-label">Volume For Day:</div>
-                            <div className="modal-value">{selectedToken.statistics.volumeForDay}</div>
+                            <div className="modal-value">{selectedToken?.statistics.volumeForDay}</div>
                         </Col>
                     </Row>
                     ) : (

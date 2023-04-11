@@ -10,6 +10,8 @@ import TokenStatsList from '../../components/lists/token-stats/TokenStatsList';
 import { Modal } from "react-bootstrap";
 import {Button} from "react-bootstrap";
 import PriceChart from "../../components/charts/priceChart";
+import DefaultInput from "../../components/inputs/DefaultInput";
+import EmptyInput from "../../components/inputs/EmptyInput";
 
 
 export default function AllTokenStats() {
@@ -23,6 +25,13 @@ export default function AllTokenStats() {
 
     const apiProvider = new TokenProvider();
     const [data, setData] = useState<TokenWithBaseStatistics[]>([]);
+    const [filter, setFilter] = useState('');
+
+    const handleFilterChange = async (value: string) => {
+        setFilter(value)
+        const serverData = await apiProvider.findAllByNamesFilter(value);
+        setData(serverData);
+    }
 
     useEffect(() => {
         (async () => {
@@ -48,29 +57,32 @@ export default function AllTokenStats() {
     };
     const handleCloseModal = () => setShowModal(false);
     
-    //TODO add pricestamps to modal
     return (
         <div>
-        <div className="d-flex justify-content-center mt-5 pt-5 px-5" style={{height: "100vh"}}>
-            <div className="all_container flex-fill mt-5 ml-5 mr-5" style={{fontSize: "2rem"}}>
-                <Container>
-                    <Row>
-                        <Col xs={3} className="center">Name</Col>
-                        <Col xs={3} className="center"></Col>
-                        <Col xs={3} className="center"></Col>
-                        <Col xs={3} className="center">Price</Col>
-                    </Row>
-                    <div className="mt-1 data px-3">
-                        {data.length === 0
-                            ?
-                            <Row className="table-row">Loading...</Row>
-                            :
-                            <TokenStatsList tokens={data} onClick={handleTokenStatsClick}></TokenStatsList>
-                        }
-                    </div>
-                </Container>
+                
+            <div className="d-flex justify-content-center mt-5 pt-5 px-5" style={{height: "100vh"}}>
+                <div className="all_container flex-fill mt-5 ml-5 mr-5" style={{fontSize: "2rem"}}>
+                <div className="flex-fill m-3">
+                    <EmptyInput placeholder="" setValue={handleFilterChange} value={filter}></EmptyInput>
+                </div>
+                    <Container>
+                        <Row>
+                            <Col xs={3} className="center">Name</Col>
+                            <Col xs={3} className="center"></Col>
+                            <Col xs={3} className="center"></Col>
+                            <Col xs={3} className="center">Price</Col>
+                        </Row>
+                        <div className="mt-1 data px-3">
+                            {data.length === 0
+                                ?
+                                <Row className="table-row">Loading...</Row>
+                                :
+                                <TokenStatsList tokens={data} onClick={handleTokenStatsClick}></TokenStatsList>
+                            }
+                        </div>
+                    </Container>
+                </div>
             </div>
-        </div>
             <Modal show={showModal} onHide={handleCloseModal} className="custom-modal">
                 <Modal.Header closeButton className="custom-modal-header">
                     <Modal.Title>{selectedToken?.fullName} Statistics</Modal.Title>

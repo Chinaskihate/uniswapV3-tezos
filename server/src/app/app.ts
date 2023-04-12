@@ -5,7 +5,7 @@ import {HttpErrorFilter} from "../proxy_logic/error_filters/httpErrorFilter";
 import {config} from "dotenv"
 import {QueryErrorFilter} from "../proxy_logic/error_filters/queryErrorFilter";
 
-async function bootstrap() {
+async function bootstrap() {  
   config({path: 'dev.env'})
   const app = await NestFactory.create(AppModule);
   app.enableCors();

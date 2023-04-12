@@ -12,6 +12,7 @@ import {Button} from "react-bootstrap";
 import PriceChart from "../../components/charts/priceChart";
 import DefaultInput from "../../components/inputs/DefaultInput";
 import EmptyInput from "../../components/inputs/EmptyInput";
+import PeriodDropDown from "../../components/lists/drop-down-menu/PeriodDropDown";
 
 
 export default function AllTokenStats() {
@@ -21,11 +22,10 @@ export default function AllTokenStats() {
     const [selectedToken, setSelectedToken] = useState<TokenWithExtendedStatistics>();
     const [selectedPriceStamps, setSelectedPriceStamps] = useState<PriceStamp[]>();
 
-    
-
     const apiProvider = new TokenProvider();
     const [data, setData] = useState<TokenWithBaseStatistics[]>([]);
     const [filter, setFilter] = useState('');
+    const [period, setPeriod] = useState('');
 
     const handleFilterChange = async (value: string) => {
         setFilter(value)
@@ -43,18 +43,29 @@ export default function AllTokenStats() {
     const handleTokenStatsClick = async (token: TokenWithBaseStatistics) => {
         setShowModal(true);
         console.log("Getting token stats: " + token.address);
-        
         try {
           const extendedTokenStats = await apiProvider.findByAddress(token.address);
           console.log("Fetched token: " + extendedTokenStats.fullName);
           setSelectedToken(extendedTokenStats);
-          const priceStamps = await apiProvider.findPriceStampsByAddress(token.address);
-          console.log("Fetched price stamps: " + priceStamps);
+          const priceStamps = await apiProvider.findPriceStampsByAddress(token.address, "all");
           setSelectedPriceStamps(priceStamps);
         } catch (error) {
           console.error(error);
         }
     };
+
+    const handleSetPeriod = async (option: string) => {
+        setPeriod(option)
+        if (selectedToken != undefined) {
+            const add = selectedToken.address
+            console.log('Fetching: ' + selectedToken?.address + option);
+            const priceStamps = await apiProvider.findPriceStampsByAddress(add, option);
+            setSelectedPriceStamps(priceStamps);
+        } else {
+            console.error("No token selected")
+        }
+    }
+
     const handleCloseModal = () => setShowModal(false);
     
     return (
@@ -98,6 +109,7 @@ export default function AllTokenStats() {
                             <div className="modal-label">Total Volume:</div>
                             <div className="modal-value">{selectedToken?.statistics.totalVolume}</div> 
                             <PriceChart data={selectedPriceStamps as PriceStamp[]}></PriceChart>
+                            <PeriodDropDown onSelect={handleSetPeriod}></PeriodDropDown>
                         </Col>
                         <Col className="col-6">
                             <div className="modal-label">Total Value Locked:</div>

@@ -117,7 +117,7 @@ const PoolPreviewPage = () => {
     // TODO Make the text in input smaller
     return (
         <div className="d-flex justify-content-center align-items-center pt-5 mt-4" style={{ height: '100vh', zIndex: 1 }}>
-        <Container className="col-xl-12 col-lg-12 col-md-10 col-xs-12 mt-5">
+        <Container className="flex-fill mt-5">
           <div className={classes.change_container}>
             <Row>
               <Col>

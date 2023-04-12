@@ -60,6 +60,7 @@
     ]
   },
   "devDependencies": {
+    "dotenv": "^16.0.3",
     "os-browserify": "^0.3.0",
     "stream-browserify": "^3.0.0"
   }

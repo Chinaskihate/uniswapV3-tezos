@@ -12,12 +12,11 @@ interface DefaultInputProps {
 
 const DefaultInput: FC<DefaultInputProps> = ({placeholder, setValue, value}) => {
     return (
-        <Form className="row">
-            <Form.Control className="fs-1 rounded-input" placeholder={placeholder}
+        <Form>
+            <Form.Control className="row flex-fill fs-1 rounded-input" placeholder={placeholder}
                           value={value}
                           onChange={(e) => setValue(e.target.value)}>
             </Form.Control>
-            <TokenSelectModal/>
         </Form>
     );
 };

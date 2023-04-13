@@ -5,7 +5,7 @@ import Pool from "./IPool";
 
 interface Props {
     pools: Pool[];
-    onClick: (id: number) => void;
+    onClick: (pool: Pool) => void;
 }
 
 const PoolList: FC<Props> = ({pools, onClick}) => {
@@ -13,7 +13,7 @@ const PoolList: FC<Props> = ({pools, onClick}) => {
         <div className="pool-list-container">
             <ul className="pool-list">
             {pools.map((pool) => (
-                <div className='mb-3' key={pool.id} onClick={() => onClick(pool.id)}>
+                <div className='mb-3' key={pool.id} onClick={() => onClick(pool)}>
                     <PoolElement {...pool} />
                 </div>
             ))}

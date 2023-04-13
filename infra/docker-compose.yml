@@ -7,6 +7,11 @@ services:
     build: ../client/client
     ports:
       - 3000:3000
+    environment:
+      SERVER_PORT: 3001
+      SERVER_ADDRESS: http://localhost
+      EXCHANGE_ADDRESS: zhopa
+
   backend:
     container_name: backend
     image: backend

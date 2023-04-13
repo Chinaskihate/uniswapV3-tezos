@@ -7,7 +7,7 @@ interface Props {
   onClick: (token: TokenWithBaseStatistics) => void;
 }
 
-const TokenStatsList: FC<Props> = ({ tokens, onClick }) => {
+const TokenList: FC<Props> = ({ tokens, onClick }) => {
   return (
     <div>
       {tokens.length === 0 ? (
@@ -16,27 +16,18 @@ const TokenStatsList: FC<Props> = ({ tokens, onClick }) => {
         tokens.map((t) => (
           <Row className="table-row" onClick={() => onClick(t)}>
             <Col sm={3} md={3} className="center">
-              <div>{t.fullName}</div>
+              <div 
+                style={{
+                  color: 'white',
+                  fontSize: '2rem',
+                }}>{t.fullName}</div>
               <div
                 style={{
                   color: 'grey',
-                  fontSize: '1rem',
+                  fontSize: '0.8rem',
                 }}
               >
                 {t.shortName}
-              </div>
-            </Col>
-            <Col md={3} sm={3} xs={0}></Col>
-            <Col md={3} sm={3} xs={0}></Col>
-            <Col sm={3} md={3} className="center">
-              <div>${t.statistics.price}</div>
-              <div
-                style={{
-                  color: t.statistics.changeForDay > 0 ? 'green' : 'red',
-                  fontSize: '1rem',
-                }}
-              >
-                {(t.statistics.changeForDay > 0 ? '+' : '') + t.statistics.changeForDay}%
               </div>
             </Col>
           </Row>
@@ -47,4 +38,4 @@ const TokenStatsList: FC<Props> = ({ tokens, onClick }) => {
   );
 };
 
-export default TokenStatsList;
+export default TokenList;

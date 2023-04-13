@@ -7,6 +7,8 @@ import ConnectButton from "../../components/buttons/ConnectButton";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 import SwapButton from "../../components/buttons/SwapButton";
+import TokenSelectModal from '../../components/modals/TokenSelectModal';
+import ErrorButton from '../../components/buttons/UnclickableButton';
 
 const SwapPage = () => {
     const [sellValue, setSell] = useState('');
@@ -36,13 +38,22 @@ const SwapPage = () => {
                             </label>
                         </Row>
                         <Row className="text-center">
-                            <div className="flex-fill m-3">
+                            <div className="row flex-fill m-3">
                                 <DefaultInput placeholder="Sell..." setValue={handleSell} value={sellValue}/>
+                                <div className="row col-12">
+                                    {storeUserAddress ?<TokenSelectModal/> :
+                                    <ErrorButton errorText='Wallet not connected' buttonText="Select Token"></ErrorButton> }
+                                </div>
                             </div>
                         </Row>
                         <Row className="text-center">
-                            <div className="flex-fill m-3">
+                            <div className="row flex-fill m-3">
                                 <DefaultInput placeholder="Buy..." setValue={handleBuy} value={buyValue}/>
+                                
+                                <div className="row col-12">
+                                    {storeUserAddress ?<TokenSelectModal/> :
+                                    <ErrorButton errorText='Wallet not connected' buttonText="Select Token"></ErrorButton> }
+                                </div>
                             </div>
                         </Row>
                         <Row className="text-center">

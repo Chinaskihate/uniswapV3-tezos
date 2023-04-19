@@ -1,26 +1,51 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import NavigationBar from "./components/NavigationBar";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Navigate
+  } from "react-router-dom";
+import SwapPage from "./pages/swap_window/SwapPage";
+import NoPage from "./pages/NoPage";
+import Pools from "./pages/Pools";
+import TokenStats from "./pages/TokenStats";
+import AllTokenStats from "./pages/all_page/AllTokenStats";
+import {Provider} from "react-redux";
+import {store} from "./store";
+import {TokenProvider} from "./provider/tokenProvider";
+
+
+
+function Home(){
+    return <Navigate to='/exchange'/>;
+}
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        <Provider store={store}>
+            <Router>
+                <div className="app">
+                    <NavigationBar/>
+                    <Routes>
+                        <Route path="/" element = {<Home/>}>
+                        </Route>
+                        <Route path="/exchange" element = {<SwapPage/>}>
+                        </Route>
+                        <Route path="/alltokenstats" element = {<AllTokenStats/>}>
+                            <Route path = "tokenstats" element = {<TokenStats/>}>
+                            </Route>
+                        </Route>
+                        <Route path="/pools" element = {<Pools/>}>
+                        </Route>
+                        <Route path="*" element={<NoPage />} />
+                    </Routes>
+                </div>
+            </Router>
+        </Provider>
+    );
 }
 
 export default App;

@@ -1,0 +1,40 @@
+
+.rounded-left {
+    border-radius: 1rem 0 0 0 !important;
+    background-color: #345c6c !important;
+    line-height: 0.5;
+    padding : 0.25rem 0.5rem
+}
+
+
+.rounded-right {
+    border-radius: 0 1rem 0 0 !important;
+    background-color: #2f5463 !important;
+    line-height: 0.5;
+    padding : 0.25rem 0.5rem
+}
+
+.arrow-right {
+    position: absolute;
+    top: 40%;
+    right: -50px;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-right: 100px solid #6c757d;
+  }
+
+.rounded-input-empty {
+    border-radius: 1rem !important;
+    background-color: #315969 !important;
+}
+
+.rounded-button {
+    border-radius: 0 0 1rem 1rem !important;
+    background-color: #1e4149 !important;
+}
+
+.my-modal .modal-content {
+    background-color: #274852;
+}

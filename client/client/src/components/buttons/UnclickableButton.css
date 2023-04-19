@@ -1,0 +1,14 @@
+.rounded-button {
+    border-radius: 0 0 1rem 1rem !important;
+    background-color: #1e4149 !important;
+}
+
+.my-modal .modal-content {
+    background-color: #274852;
+}
+
+.custom-modal-header {
+    background-color: #35636e;
+    color:aliceblue
+}
+  

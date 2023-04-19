@@ -1,0 +1,8 @@
+{
+  "main": "./contracts/Main.mligo",
+  "deploy": "./build/contracts/Main.tz",
+  "storage": "./storages/Storage.mligo",
+  "doNotShowCompilationMessage": true,
+  "gistId": "bdb5058896e679c78afd11e3ae0d4205",
+  "projectName": "Final(3)"
+}

@@ -43,7 +43,6 @@ export class ContractService implements IContractService, OnModuleInit {
       const storage: any = await contract.storage()
       this.monitor_map_id = storage.tokens.id.toNumber()
     } catch (error) {
-      console.log(error)
       console.log("[CONTRACT SERVICE ERROR] : Contract error: unable to identify BigMap address. " +
         "Tokens info update continued with the previous BigMap id...")
     }
@@ -99,7 +98,7 @@ export class ContractService implements IContractService, OnModuleInit {
 
 
   private async getTokenInfoByHashes(monitor_map_id,
-                                            tokenHashes: string[]): Promise<any[]> {
+                                     tokenHashes: string[]): Promise<any[]> {
     return Promise.all(tokenHashes.map(async hash => {
       try {
         const response = await fetch(

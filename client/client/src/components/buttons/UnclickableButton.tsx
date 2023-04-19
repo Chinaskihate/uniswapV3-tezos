@@ -27,7 +27,7 @@ const ErrorButton: FC<Props> = ({buttonText, errorText}) => {
 
             <Modal className="my-modal" show={show} onHide={handleClose}>
                 <Modal.Header className='custom-modal-header' closeButton>
-                    <Modal.Title>Error: {errorText}</Modal.Title>
+                    <Modal.Title>Incorrect Min and Max values</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Footer>

@@ -1,11 +1,11 @@
 import React, {FC} from 'react';
 import './Pool.css';
 import PoolElement from './Pool';
-import Pool from "./IPool";
+import Position from "./IPool";
 
 interface Props {
-    pools: Pool[];
-    onClick: (pool: Pool) => void;
+    pools: Position[];
+    onClick: (pool: Position) => void;
 }
 
 const PoolList: FC<Props> = ({pools, onClick}) => {

@@ -37,7 +37,6 @@ const DefaultInput: FC<TwoInputProps> = ({
                     </Form.Control>
                 </Col>
             </Row>
-            <TokenSelectModal/>
         </Form>
     );
 };

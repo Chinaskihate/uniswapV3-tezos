@@ -11,7 +11,7 @@ interface EmptyInputProps {
 
 const EmptyInput: FC<EmptyInputProps> = ({placeholder, setValue, value}) => {
     return (
-        <Form className="row">
+        <Form>
             <Form.Control className="fs-1 rounded-input-empty" placeholder={placeholder}
                           value={value}
                           onChange={(e) => setValue(e.target.value)}>

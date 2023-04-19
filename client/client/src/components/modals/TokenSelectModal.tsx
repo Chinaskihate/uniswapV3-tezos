@@ -1,13 +1,20 @@
-import React, {useState} from 'react';
+import React, {useState, FC} from 'react';
 import {Button, Container, Modal, Row} from "react-bootstrap";
 import './TokenSelectModal.css';
 import { BaseToken } from '../../entities/baseToken';
 import { TokenProvider } from '../../provider/tokenProvider';
 import { TokenWithBaseStatistics } from '../../entities/tokenWithBaseStatistics';
 import TokenList from '../lists/token/TokenList';
+import {useDispatch, useSelector} from "react-redux";
+import {actionCreators, RootState} from "../../store";
+import {bindActionCreators} from "redux";
 
-const TokenSelectModal = () => {
-    
+interface Props {
+    setAddress: (address: string) => void;
+}
+
+const TokenSelectModal: FC<Props> = ({setAddress}) => {
+
     const api_provider = new TokenProvider();
 
     const [show, setShow] = useState(false);
@@ -24,6 +31,7 @@ const TokenSelectModal = () => {
     const handleSelect = (token: TokenWithBaseStatistics) => {
         console.log("token selected: " + token.fullName)
         setToken(token);
+        setAddress(token.address);
         handleClose();
     }
 

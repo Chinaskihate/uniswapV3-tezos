@@ -2,13 +2,13 @@ import React, { FC } from 'react';
 import './Pool.css';
 import { Col, Form, Row } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
-import Pool from './IPool';
+import Position from './IPool';
 
-const PoolElement: FC<Pool> = ({
+const PoolElement: FC<Position> = ({
   minValue,
   maxValue,
-  percentage,
-  tokenPair,
+  firstToken: firstToken,
+  secondToken: secondToken,
 }) => {
   return (
     <div className="flex-fill m-0">
@@ -27,7 +27,7 @@ const PoolElement: FC<Pool> = ({
           </Col>
         </Row>
         <Button variant="primary rounded-button">
-          {tokenPair} {percentage}%
+          {firstToken}  /  {secondToken}
         </Button>
       </Form>
     </div>
